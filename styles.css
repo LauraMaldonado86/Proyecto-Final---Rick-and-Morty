@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Mynerve', cursive;
+}
+
+body{
+    min-height: 100vh;
+    background-color: white;
+}
+
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 2rem;
+    padding: 50px;
+}
+
+.card {
+    border-radius: 0.5rem;
+    background-color: white;
+    box-shadow: 0 0 2rem -1rem;
+    padding-block: 1rem;
+    /*text-transform: uppercase;*/
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.card img{
+    width: 100%;
+    max-width: 8rem;
+}
