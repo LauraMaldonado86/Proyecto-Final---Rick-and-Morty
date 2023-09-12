@@ -15,6 +15,7 @@ const btnPrev = document.querySelector(".btn-prev");
 const btnNext = document.querySelector(".btn-next");
 const btnUltima = document.querySelector(".btn-ultima");
 
+
 let i = 1;
 let totalPaginas = 0;
 let genero = "";
@@ -35,8 +36,7 @@ getCharacters();
 const renderCharacters = (data) => {
   //console.log(data)
   containerPag.innerHTML =
-`<p>Pagina ${i} de ${data.info.pages}</p>
- <p>Ir a la pagina...</p>
+`<p>Página ${i} de ${data.info.pages}</p>
 `;
   container.innerHTML = "";
   data.results.forEach(character => {
@@ -51,6 +51,7 @@ const renderCharacters = (data) => {
   });
 };
 
+
 const verDescripcion = (characterUrl) => {
   container.innerHTML = ""
   fetch(characterUrl)
@@ -58,16 +59,16 @@ const verDescripcion = (characterUrl) => {
     .then(characterUrl => {
       const episodios = characterUrl.episode.length;
       container.innerHTML =
-        `<div class="card">
+        `<div class="card-2">
         <h2>${characterUrl.name}</h2>
         <img src="${characterUrl.image}" alt="">
-        <p>Id: ${characterUrl.id}</p>
-        <p>Género: ${characterUrl.gender}</p>
-        <p>Especie: ${characterUrl.species}</p>
-        <p>Estado: ${characterUrl.status}</p>
-        <p>Origen: ${characterUrl.origin.name}</p>
-        <p>Locación: ${characterUrl.location.name}</p>
-        <p>Cant de episodios en que fue visto:${episodios}</p>
+        <p>ID: ${characterUrl.id}</p>
+        <p>GENERO: ${characterUrl.gender}</p>
+        <p>ESPECIE: ${characterUrl.species}</p>
+        <p>ESTADO: ${characterUrl.status}</p>
+        <p>ORIGEN: ${characterUrl.origin.name}</p>
+        <p>LOCACION: ${characterUrl.location.name}</p>
+        <p>EPISODIOS EN QUE APARECE: ${episodios}</p>
         <button class="btn" onClick=getCharacters(i)>Volver</button>
         </div>
         `
@@ -77,26 +78,31 @@ const verDescripcion = (characterUrl) => {
 
 btnTodos.addEventListener("click", () => {
   genero = "";
+  i = 1;
   getCharacters();
 });
 
 btnFemale.addEventListener("click", () => {
   genero = "female";
+  i = 1;
   getCharacters();
 });
 
 btnMale.addEventListener("click", () => {
   genero = "male";
+  i = 1;
   getCharacters();
 });
 
 btnGenderless.addEventListener("click", () => {
   genero = "genderless";
+  i = 1;
   getCharacters();
 });
 
 btnUnknown.addEventListener("click", () => {
   genero = "unknown";
+  i = 1;
   getCharacters();
 });
 
@@ -107,14 +113,23 @@ btnPrimera.addEventListener("click", () => {
   if (i >= 1) {
     btnNext.removeAttribute("disabled", true);
   }
+  if (i <= 1) {
+    btnPrimera.setAttribute("disabled", true);
+    btnPrev.setAttribute("disabled", true);
+    btnUltima.removeAttribute("disabled", true);
+  }
 });
 
 btnPrev.addEventListener("click", () => {
   i -= 1;
   if (i <= 1) {
     btnPrev.setAttribute("disabled", true);
+    btnPrimera.setAttribute("disabled", true);
   } else {
     btnNext.removeAttribute("disabled", true);
+  }
+  if (i < totalPaginas) {
+    btnUltima.removeAttribute("disabled", true);
   }
   getCharacters(i);
 });
@@ -122,11 +137,13 @@ btnPrev.addEventListener("click", () => {
 btnNext.addEventListener("click", () => {
   i += 1;
   getCharacters(i);
-  if (i >= 1) {
-    btnPrev.removeAttribute("disabled", true);
-  }
   if (i >= totalPaginas) {
     btnNext.setAttribute("disabled", true);
+    btnUltima.setAttribute("disabled", true);
+  }
+  if (i > 1) {
+    btnPrev.removeAttribute("disabled", true);
+    btnPrimera.removeAttribute("disabled", true);
   }
 });
 
@@ -135,5 +152,14 @@ btnUltima.addEventListener("click", () => {
   getCharacters(i);
   if (i >= 1) {
     btnPrev.removeAttribute("disabled", true);
+    btnPrimera.removeAttribute("disabled", true);
+  }
+  if (i >= totalPaginas) {
+    btnNext.setAttribute("disabled", true);
+    btnUltima.setAttribute("disabled", true);
   }
 });
+
+
+
+
