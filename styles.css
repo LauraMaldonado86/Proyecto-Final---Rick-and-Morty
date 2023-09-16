@@ -7,38 +7,74 @@
 
 body {
     min-height: 100vh;
-    background-color: white;
+    background-color: orangered;
 }
 
 header {
     background-image: url(Rick-and-Morty.png);
-    height: 30vh;
     background-color: orangered;
-    background-size: 90vh;
+    height: 35vh;
+    background-size: 100vh;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; 
+}
+
+header:hover {
+    animation: achica 0.5s;
+}
+
+@keyframes achica{
+    70% { transform:rotateZ( 0deg) scale(.5); }
+}
+
+nav {
+    background-color: orangered;
     display: flex;
-    align-items:end;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 4em;
-    padding-top: 16em;
     padding-bottom: 1em;
+    padding-left: 22vw;
+    padding-right: 22vw;
+    gap: 1em;
+}
+
+nav p {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
 }
 
 
-.btn-todos, .btn-female, .btn-male, .btn-genderless, .btn-unknown {
-    width: 6rem;
-    height: 2rem;
+.btn-todos, .btn-female, .btn-male, .btn-genderless, .btn-unknownG, .btn-alive, .btn-dead, .btn-unknownS {
+    width: 7em;
+    height: 2em;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1em;
     background-color: rgb(10, 225, 225);
     border-radius: 0.5em;
     cursor: pointer;
 }
 
-.btn-todos:hover, .btn-female:hover, .btn-male:hover, .btn-genderless:hover, .btn-unknown:hover {
+.btn-todos:hover, .btn-female:hover, .btn-male:hover, .btn-genderless:hover, .btn-unknownG:hover {
     background-color: rgb(61, 255, 47);
     color: white;
+    box-shadow: 0 0 1em 0;
+}
+
+.btn-alive, .btn-dead, .btn-unknownS {
+    width: 7rm;
+    height: 2em;
+    font-weight: bold;
+    font-size: 1em;
+    background-color: rgb(61, 255, 47);
+    border-radius: 0.5em;
+    cursor: pointer;
+}
+
+.btn-alive:hover, .btn-dead:hover, .btn-unknownS:hover {
+    background-color: rgb(10, 225, 225);
+    color: white;
+    box-shadow: 0 0 1em 0;
 }
 
 .containerTodo {
@@ -49,16 +85,14 @@ header {
     padding-bottom: 2em;
 }
 
-.containerPag {
-    display: flex;
-    justify-content: right;
-    padding: 1em;
-    margin-right: 2em;
-    font-size: 1.2rem;
+.containerPersonajes {
+    font-size: 1.4em;
     font-weight: bold;
+    color: black;
+    padding: 1em;
 }
 
-.container {
+.containerCards {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -66,11 +100,11 @@ header {
 }
 
 .card {
-    width: 13em;
+    width: 15em;
     height: 20em;
-    border-radius: 0.5rem;
+    border-radius: 0.5em;
     background-color: orangered;
-    box-shadow: 0 0 1rem 0;
+    box-shadow: 0 0 1em 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,24 +112,32 @@ header {
 
 .card:hover {
     box-shadow: 1em 1em 1em 0 white;
-  }
+}
 
 h2 {
     margin: 1rem;
     text-align: center;
+    display: flex;
+    align-items: center;
+    height: 3.2em;
 }
 
 .card img {
-    width: 10rem;
-    height: 12rem;
+    width: 10em;
+    height: 12em;
+    filter: grayscale(100%);
 }
 
+.card img:hover {
+    filter: grayscale(0%);
+    transform: rotateY(180deg);
+}
 
 .card-2 {
-    border-radius: 1.5rem;
+    border-radius: 1.5em;
     width: 30vw;
     background-color: orangered;
-    box-shadow: 0 0 1rem 0rem;
+    box-shadow: 0 0 1em 0em;
     font-weight: bold;
     display: flex;
     flex-direction: column;
@@ -104,22 +146,43 @@ h2 {
 }
 
 .card-2 h2 {
-    font-size: 2.5rem;
+    font-size: 2.5em;
 }
 
 .card-2 img {
     width: 100%;
     height: 100%;
     padding: 1em;
+    border-radius:10%;
+}
+
+.card-2 img:hover {
+    animation: agranda 1s;
+}
+
+@keyframes agranda{
+    50% { transform: scale(1.15); }
 }
 
 .btn {
-    margin: 1rem;
-    width: 5rem;
+    margin: 1em;
+    width: 6em;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1.1em;
     border-radius: 0.3em;
     cursor: pointer;
+    padding: 0.2em;
+}
+
+.containerPag {
+    display: flex;
+    justify-content: right;
+    margin-top: 1em;
+    padding: 1em;
+    margin-right: 2em;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: orangered;
 }
 
 .containerPaginado {
@@ -130,19 +193,18 @@ h2 {
 }
 
 .btn-primera, .btn-prev, .btn-next, .btn-ultima {
-    width: 8rem;
-    height: 2rem;
+    width: 8em;
+    height: 2em;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 1em;
     background-color:orangered;
-    margin-top: 2em;
     border-radius: 0.5em;
     cursor: pointer;
 }
 
 .btn-primera:hover, .btn-prev:hover, .btn-next:hover, .btn-ultima:hover {
-    background-color: rgb(10, 225, 225);
     color: white;
+    box-shadow: 0 0 1em 0;
 }
 
 footer {
@@ -154,6 +216,35 @@ footer {
     font-weight: bold;
     background: black;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.2em;
 }
 
+@media (max-width: 600px) {
+    header {
+        background-size: 100vw;
+        height: 20vh;
+    }
+
+    nav{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        height: 40vh;
+    }
+
+    .card-2 {
+        width: 80vw;
+    }
+
+    .containerPag {
+        margin-right: 0.5em;
+    }
+    .containerPaginado {
+        gap: 0.5em;
+    }
+
+    .btn-primera, .btn-prev, .btn-next, .btn-ultima {
+        height: 3em;
+    }
+}

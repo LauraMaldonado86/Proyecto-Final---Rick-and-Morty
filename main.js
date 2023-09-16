@@ -1,14 +1,16 @@
 
-const containerPag = document.getElementById("containerPag")
-const container = document.getElementById("container");
-
-//console.log(container)
+const containerPersonajes = document.getElementById("containerPersonajes");
+const containerCards = document.getElementById("containerCards");
+const containerPag = document.getElementById("containerPag");
 
 const btnTodos = document.querySelector(".btn-todos");
 const btnFemale = document.querySelector(".btn-female");
 const btnMale = document.querySelector(".btn-male");
 const btnGenderless = document.querySelector(".btn-genderless");
-const btnUnknown = document.querySelector(".btn-unknown");
+const btnUnknownG = document.querySelector(".btn-unknownG");
+const btnAlive = document.querySelector(".btn-alive");
+const btnDead = document.querySelector(".btn-dead");
+const btnUnknownS = document.querySelector(".btn-unknownS");
 
 const btnPrimera = document.querySelector(".btn-primera");
 const btnPrev = document.querySelector(".btn-prev");
@@ -19,9 +21,10 @@ const btnUltima = document.querySelector(".btn-ultima");
 let i = 1;
 let totalPaginas = 0;
 let genero = "";
+let estado = "";
 
 const getCharacters = (i) => {
-  fetch(`https://rickandmortyapi.com/api/character/?page=${i}&gender=${genero}`)
+  fetch(`https://rickandmortyapi.com/api/character/?page=${i}&gender=${genero}&status=${estado}`)
     .then(res => res.json())
     .then(data => {
       renderCharacters(data)
@@ -34,31 +37,35 @@ getCharacters();
 
 
 const renderCharacters = (data) => {
-  //console.log(data)
-  containerPag.innerHTML =
-`<p>Página ${i} de ${data.info.pages}</p>
-`;
-  container.innerHTML = "";
+
+  containerPersonajes.innerHTML =
+  `<p>Personajes: ${data.info.count}</p>
+  `;
+
+  containerCards.innerHTML = "";
   data.results.forEach(character => {
-    //console.log(character.length)
-    container.innerHTML +=
+    containerCards.innerHTML +=
       `<div class="card">
-      <h2>${character.name}</h2>
+      <h2>${character.name} #${character.id}</h2>
       <img src="${character.image}" alt="">
       <button class="btn" onClick=verDescripcion("${character.url}")>Ver más</button>
       </div>
       `
   });
+
+  containerPag.innerHTML =
+  `<p>Página ${i} de ${data.info.pages}</p>
+  `;
 };
 
 
 const verDescripcion = (characterUrl) => {
-  container.innerHTML = ""
+  containerCards.innerHTML = ""
   fetch(characterUrl)
     .then(res => res.json())
     .then(characterUrl => {
       const episodios = characterUrl.episode.length;
-      container.innerHTML =
+      containerCards.innerHTML =
         `<div class="card-2">
         <h2>${characterUrl.name}</h2>
         <img src="${characterUrl.image}" alt="">
@@ -78,6 +85,7 @@ const verDescripcion = (characterUrl) => {
 
 btnTodos.addEventListener("click", () => {
   genero = "";
+  estado = "";
   i = 1;
   getCharacters();
 });
@@ -100,8 +108,28 @@ btnGenderless.addEventListener("click", () => {
   getCharacters();
 });
 
-btnUnknown.addEventListener("click", () => {
+btnUnknownG.addEventListener("click", () => {
   genero = "unknown";
+  i = 1;
+  getCharacters();
+});
+
+btnAlive.addEventListener("click", () => {
+  estado = "alive";
+  i = 1;
+  getCharacters();
+});
+
+btnDead.addEventListener("click", () => {
+  genero = "";
+  estado = "dead";
+  i = 1;
+  getCharacters();
+});
+
+btnUnknownS.addEventListener("click", () => {
+  genero = "";
+  estado = "unknown";
   i = 1;
   getCharacters();
 });
