@@ -3,11 +3,12 @@ const containerPersonajes = document.getElementById("containerPersonajes");
 const containerCards = document.getElementById("containerCards");
 const containerPag = document.getElementById("containerPag");
 
-const btnTodos = document.querySelector(".btn-todos");
+const btnTodosG = document.querySelector(".btn-todosG");
 const btnFemale = document.querySelector(".btn-female");
 const btnMale = document.querySelector(".btn-male");
 const btnGenderless = document.querySelector(".btn-genderless");
 const btnUnknownG = document.querySelector(".btn-unknownG");
+const btnTodosS = document.querySelector(".btn-todosS");
 const btnAlive = document.querySelector(".btn-alive");
 const btnDead = document.querySelector(".btn-dead");
 const btnUnknownS = document.querySelector(".btn-unknownS");
@@ -32,14 +33,12 @@ const getCharacters = (i) => {
     })
 }
 
-
 getCharacters();
-
 
 const renderCharacters = (data) => {
 
   containerPersonajes.innerHTML =
-  `<p>Personajes: ${data.info.count}</p>
+    `<p>Personajes: ${data.info.count}</p>
   `;
 
   containerCards.innerHTML = "";
@@ -54,7 +53,7 @@ const renderCharacters = (data) => {
   });
 
   containerPag.innerHTML =
-  `<p>Página ${i} de ${data.info.pages}</p>
+    `<p>Página ${i} de ${data.info.pages}</p>
   `;
 };
 
@@ -83,7 +82,7 @@ const verDescripcion = (characterUrl) => {
 };
 
 
-btnTodos.addEventListener("click", () => {
+btnTodosG.addEventListener("click", () => {
   genero = "";
   estado = "";
   i = 1;
@@ -92,51 +91,66 @@ btnTodos.addEventListener("click", () => {
 
 btnFemale.addEventListener("click", () => {
   genero = "female";
+  estado = "";
   i = 1;
   getCharacters();
 });
 
 btnMale.addEventListener("click", () => {
   genero = "male";
+  estado = "";
   i = 1;
   getCharacters();
 });
 
 btnGenderless.addEventListener("click", () => {
   genero = "genderless";
+  estado = "";
   i = 1;
   getCharacters();
 });
 
 btnUnknownG.addEventListener("click", () => {
   genero = "unknown";
+  estado = "";
+  i = 1;
+  getCharacters();
+});
+
+btnTodosS.addEventListener("click", () => {
+  estado = "";
+  genero = "";
   i = 1;
   getCharacters();
 });
 
 btnAlive.addEventListener("click", () => {
   estado = "alive";
+  genero = "";
+
   i = 1;
   getCharacters();
 });
 
 btnDead.addEventListener("click", () => {
-  genero = "";
   estado = "dead";
+  genero = "";
+
   i = 1;
   getCharacters();
 });
 
 btnUnknownS.addEventListener("click", () => {
-  genero = "";
   estado = "unknown";
+  genero = "";
+
   i = 1;
   getCharacters();
 });
 
 
 btnPrimera.addEventListener("click", () => {
-  i=1;
+  i = 1;
   getCharacters(i);
   if (i >= 1) {
     btnNext.removeAttribute("disabled", true);
@@ -176,7 +190,7 @@ btnNext.addEventListener("click", () => {
 });
 
 btnUltima.addEventListener("click", () => {
-  i=totalPaginas;
+  i = totalPaginas;
   getCharacters(i);
   if (i >= 1) {
     btnPrev.removeAttribute("disabled", true);

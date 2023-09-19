@@ -45,7 +45,7 @@ nav p {
 }
 
 
-.btn-todos, .btn-female, .btn-male, .btn-genderless, .btn-unknownG, .btn-alive, .btn-dead, .btn-unknownS {
+.btn-todosG, .btn-female, .btn-male, .btn-genderless, .btn-unknownG, .btn-alive, .btn-dead, .btn-unknownS {
     width: 7em;
     height: 2em;
     font-weight: bold;
@@ -55,14 +55,14 @@ nav p {
     cursor: pointer;
 }
 
-.btn-todos:hover, .btn-female:hover, .btn-male:hover, .btn-genderless:hover, .btn-unknownG:hover {
+.btn-todosG:hover, .btn-female:hover, .btn-male:hover, .btn-genderless:hover, .btn-unknownG:hover {
     background-color: rgb(61, 255, 47);
     color: white;
     box-shadow: 0 0 1em 0;
 }
 
-.btn-alive, .btn-dead, .btn-unknownS {
-    width: 7rm;
+.btn-todosS, .btn-alive, .btn-dead, .btn-unknownS {
+    width: 7em;
     height: 2em;
     font-weight: bold;
     font-size: 1em;
@@ -71,7 +71,7 @@ nav p {
     cursor: pointer;
 }
 
-.btn-alive:hover, .btn-dead:hover, .btn-unknownS:hover {
+.btn-todosS:hover, .btn-alive:hover, .btn-dead:hover, .btn-unknownS:hover {
     background-color: rgb(10, 225, 225);
     color: white;
     box-shadow: 0 0 1em 0;
@@ -96,7 +96,7 @@ nav p {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 3rem;
+    gap: 3em;
 }
 
 .card {
@@ -208,16 +208,14 @@ h2 {
 }
 
 footer {
-    height: 2.5em;
-    justify-content: center;
     text-align: center;
-    display: flex;
-    align-items: center;
     font-weight: bold;
     background: black;
     color: white;
     font-size: 1.2em;
 }
+
+
 
 @media (max-width: 600px) {
     header {
@@ -226,11 +224,10 @@ footer {
     }
 
     nav{
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
         align-items: center;
-        height: 40vh;
+        justify-items: center;
     }
 
     .card-2 {
